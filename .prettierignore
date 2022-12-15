@@ -1,0 +1,9 @@
+node_modules
+.next
+public
+.husky
+next-env.d.ts
+yarn.lock
+tsconfig.json
+src/reportWebVitals.ts
+src/setupTests.ts
