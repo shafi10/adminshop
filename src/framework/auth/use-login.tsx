@@ -18,8 +18,7 @@ export const useLoginMutation = () => {
   const navigate = useNavigate();
   return useMutation((input: InitialLoginValue) => login(input), {
     onSuccess: (data: any) => {
-      const isValid = validateToken(data?.data?.token);
-      console.log(isValid);
+      // const isValid = validateToken(data?.data?.token);
       Cookies.set("auth_token", data?.data?.token, { expires: 365 });
       dispatch(authorize(true));
       navigate(ROUTES?.HOME);

@@ -5,4 +5,6 @@ export const ROUTES = {
   ADDPRODUCTS: "addProduct",
   CATEGORIES: "categories",
   ADDCATEGORIES: "addCategories",
+  ORDERS: "orders",
+  ADDORDERS: "addOrder",
 };

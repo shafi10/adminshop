@@ -1,27 +1,19 @@
 import React from "react";
-// import type { MenuProps } from "antd";
-import { Layout, Menu } from "antd";
-
-const { Header } = Layout;
-
-// const items1: MenuProps["items"] = ["1", "2", "3"].map((key) => ({
-//   key,
-//   label: `nav ${key}`,
-// }));
+import "./css/navbar.css";
 
 const Navbar: React.FC = () => {
   return (
-    <Header className="header">
-      <div className="logo" title="Admin Panel">
-        Admin Panel
+    <div className="navbar">
+      <div className="nav_content">
+        <div className="logo" title="Admin Panel">
+          Shop
+        </div>
+        <ul className="nav_list">
+          <li>{"Hello, Abc"}</li>
+          <li className="logout_btn">Logout</li>
+        </ul>
       </div>
-      {/* <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={["2"]}
-        items={items1}
-      /> */}
-    </Header>
+    </div>
   );
 };
 

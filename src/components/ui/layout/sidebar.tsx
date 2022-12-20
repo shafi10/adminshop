@@ -1,55 +1,78 @@
-import React from "react";
-import {
-  LaptopOutlined,
-  NotificationOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { Menu, Layout, theme } from "antd";
-
-const { Sider } = Layout;
-
-const items2: MenuProps["items"] = [
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-].map((icon, index) => {
-  const key = String(index + 1);
-
-  return {
-    key: `sub${key}`,
-    icon: React.createElement(icon),
-    label: `subnav ${key}`,
-
-    children: new Array(4).fill(null).map((_, j) => {
-      const subKey = index * 4 + j + 1;
-      return {
-        key: subKey,
-        label: `option${subKey}`,
-      };
-    }),
-  };
-});
+import React, { useState } from "react";
+import "./css/sidebar.css";
+import { subSideNav } from "../../../settings/site_settings";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { HiTemplate } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar: React.FC = () => {
-  // const onClick: MenuProps["onClick"] = (e) => {
-  //   console.log("click ", e);
-  // };
+  const [sideBarLable, setSideBarLable] = useState("");
+  const [sideBarSubLable, setSideBarSubLable] = useState("");
+  const navigate = useNavigate();
+  const sideBarClick = (item: any) => {
+    setSideBarSubLable("");
+    if (item?.label === sideBarLable) {
+      return setSideBarLable("");
+    }
+    if (item?.children) {
+      setSideBarLable(item?.label);
+    } else {
+      setSideBarLable(item?.label);
+      navigate(item.slug);
+    }
+  };
 
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
+  const sideBarSubItemClick = (data: any) => {
+    setSideBarSubLable(data?.label);
+    navigate(data?.slug);
+  };
   return (
-    <Sider width={320} style={{ background: colorBgContainer }}>
-      <Menu
-        mode="inline"
-        defaultSelectedKeys={["1"]}
-        defaultOpenKeys={["sub1"]}
-        style={{ height: "100%", borderRight: 0 }}
-        items={items2}
-      />
-    </Sider>
+    <div className="sidebar">
+      {subSideNav?.map((item) => (
+        <>
+          <div
+            className={
+              sideBarLable === item?.label && !item?.children
+                ? "side_item sidebar_active"
+                : "side_item"
+            }
+            key={item?.id}
+            onClick={() => sideBarClick(item)}
+          >
+            <div className="side_label">
+              <HiTemplate />
+              <span className="side_label_item">{item?.label}</span>
+            </div>
+            {item?.children && (
+              <span>
+                {sideBarLable === item?.label ? (
+                  <MdKeyboardArrowUp />
+                ) : (
+                  <MdKeyboardArrowDown />
+                )}
+              </span>
+            )}
+          </div>
+          {sideBarLable === item?.label && (
+            <div className="sidebar_sub">
+              {item?.children?.map((data) => (
+                <div
+                  className={
+                    sideBarSubLable === data?.label
+                      ? "sidebar_sub_item sidebar_sub_active"
+                      : "sidebar_sub_item"
+                  }
+                  key={data?.label}
+                  onClick={() => sideBarSubItemClick(data)}
+                >
+                  {data?.label}
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      ))}
+    </div>
   );
 };
 

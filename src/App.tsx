@@ -19,12 +19,12 @@ function App() {
         <Route path={ROUTES?.LOGIN} element={<Login />} />
         <Route path={ROUTES?.HOME} element={<Layout />}>
           <Route path={ROUTES?.HOME} element={<Dashboard />} />
-          <Route path={ROUTES?.PRODUCTS} element={<Products />}>
-            <Route path={ROUTES?.ADDPRODUCTS} element={<AddProducts />} />
-          </Route>
-          <Route path={ROUTES?.CATEGORIES} element={<Categories />}>
-            <Route path={ROUTES?.ADDCATEGORIES} element={<AddCategories />} />
-          </Route>
+          <Route path={ROUTES?.PRODUCTS} element={<Products />} />
+          <Route path={ROUTES?.ADDPRODUCTS} element={<AddProducts />} />
+          <Route path={ROUTES?.CATEGORIES} element={<Categories />} />
+          <Route path={ROUTES?.ADDCATEGORIES} element={<AddCategories />} />
+          <Route path={ROUTES?.ORDERS} element={<Products />} />
+          <Route path={ROUTES?.ADDORDERS} element={<AddProducts />} />
         </Route>
       </Routes>
       <ToastContainer />

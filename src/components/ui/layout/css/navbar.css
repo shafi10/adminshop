@@ -1,0 +1,37 @@
+.navbar {
+  height: 80px;
+  background-color: var(--dark);
+}
+
+.navbar .nav_content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 32px;
+}
+
+.navbar .logo {
+  color: var(--light);
+  font-size: var(--font-3xl);
+}
+
+.navbar .nav_list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--light);
+  list-style: none;
+  font-size: var(--font-xl);
+}
+
+.navbar .nav_list li {
+  cursor: pointer;
+}
+
+.navbar .logout_btn {
+  border: 1px solid var(--primaryColor);
+  color: var(--light);
+  padding: 5px 12px;
+}
