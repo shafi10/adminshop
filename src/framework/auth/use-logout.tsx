@@ -21,7 +21,7 @@ export const useLogoutMutation = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return useMutation(() => logout(), {
-    onSuccess: (_data) => {
+    onSuccess: () => {
       Cookies.remove("auth_token");
       dispatch(unauthorize());
       setAdminInfo({

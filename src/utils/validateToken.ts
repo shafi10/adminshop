@@ -15,4 +15,5 @@ export const validateToken = (tokenStr: string) => {
   //   }
   // );
   // console.log(info);
+  return tokenStr;
 };
