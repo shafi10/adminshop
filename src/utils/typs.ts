@@ -7,3 +7,10 @@ export type InitialLoginValue = {
   email: string;
   password: string;
 };
+
+export type AdminInfo = {
+  _id: string;
+  name: string;
+  email: string;
+  roles: string[];
+};

@@ -11,6 +11,7 @@ import Login from "./pages/login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ROUTES } from "./utils/routes";
+import ManagedModal from "./components/ui/modal/managed-modal";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         </Route>
       </Routes>
       <ToastContainer />
+      <ManagedModal />
     </div>
   );
 }

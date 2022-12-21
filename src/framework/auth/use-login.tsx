@@ -8,7 +8,7 @@ import { authorize } from "../../feature/uiSlice";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 import { InitialLoginValue } from "../../utils/typs";
-import { validateToken } from "../../utils/validateToken";
+// import { validateToken } from "../../utils/validateToken";
 
 export async function login(input: InitialLoginValue) {
   return await http.post(`${API_ENDPOINTS.LOGIN}`, input);
@@ -22,7 +22,7 @@ export const useLoginMutation = () => {
       Cookies.set("auth_token", data?.data?.token, { expires: 365 });
       dispatch(authorize(true));
       navigate(ROUTES?.HOME);
-      toast.success("Login successfull");
+      toast.success("Login successful");
     },
     onError: (data: any) => {
       toast.error(data.response.data.message);

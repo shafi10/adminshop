@@ -1,0 +1,22 @@
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  background: transparent;
+  outline: none;
+  border: none;
+  color: var(--dark);
+  width: 32px;
+  height: 32px;
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  opacity: 1;
+}
+
+.close_button_icon {
+  font-size: var(--font-4xl);
+}

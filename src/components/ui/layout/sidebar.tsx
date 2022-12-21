@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import "./css/sidebar.css";
 import { subSideNav } from "../../../settings/site_settings";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
@@ -29,14 +29,13 @@ const Sidebar: React.FC = () => {
   return (
     <div className="sidebar">
       {subSideNav?.map((item) => (
-        <>
+        <Fragment key={item?.id}>
           <div
             className={
               sideBarLable === item?.label && !item?.children
                 ? "side_item sidebar_active"
                 : "side_item"
             }
-            key={item?.id}
             onClick={() => sideBarClick(item)}
           >
             <div className="side_label">
@@ -55,14 +54,14 @@ const Sidebar: React.FC = () => {
           </div>
           {sideBarLable === item?.label && (
             <div className="sidebar_sub">
-              {item?.children?.map((data) => (
+              {item?.children?.map((data, index) => (
                 <div
                   className={
                     sideBarSubLable === data?.label
                       ? "sidebar_sub_item sidebar_sub_active"
                       : "sidebar_sub_item"
                   }
-                  key={data?.label}
+                  key={index}
                   onClick={() => sideBarSubItemClick(data)}
                 >
                   {data?.label}
@@ -70,7 +69,7 @@ const Sidebar: React.FC = () => {
               ))}
             </div>
           )}
-        </>
+        </Fragment>
       ))}
     </div>
   );
