@@ -41,3 +41,32 @@
   cursor: pointer;
   font-size: var(--font-xl);
 }
+
+/* 
+Category option */
+
+.category_modal {
+  width: 600px;
+  position: relative;
+}
+
+.category_modal_layout {
+  margin: 20px 0;
+}
+
+.category_modal_image_layout {
+  width: 200px;
+  height: 150px;
+  margin-bottom: 5px;
+}
+
+.category_modal_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.category_modal_title {
+  margin-top: 3px;
+  font-size: var(--font-xl);
+}

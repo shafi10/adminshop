@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type MODAL_VIEWS = "LOGOUT_VIEW";
+type MODAL_VIEWS = "LOGOUT_VIEW" | "CATEGORY_VIEW";
 
 interface UIContext {
   view?: MODAL_VIEWS;

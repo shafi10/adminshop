@@ -3,6 +3,7 @@ import Modal from "./index";
 import { RootState } from "../../../store";
 import { closeModal } from "../../../feature/modalSlice";
 import LogoutModal from "./logout";
+import CategoryModal from "./category";
 
 const ManagedModal: React.FC = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ const ManagedModal: React.FC = () => {
   return (
     <Modal open={modal?.isOpen} onClose={() => dispatch(closeModal())}>
       {modal?.view === "LOGOUT_VIEW" && <LogoutModal />}
+      {modal?.view === "CATEGORY_VIEW" && <CategoryModal />}
     </Modal>
   );
 };

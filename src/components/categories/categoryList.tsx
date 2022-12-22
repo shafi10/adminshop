@@ -6,6 +6,9 @@ import ActionsButton from "../ui/actions";
 import { useNavigate } from "react-router-dom";
 import { Category } from "../../utils/typs";
 import { useDeleteCategory } from "../../framework/categories/use-delete-category";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { openModal } from "../../feature/modalSlice";
 
 export interface Props {
   title?: string;
@@ -20,13 +23,15 @@ const tableHead = [
 ];
 
 const CategoryList: React.FC<Props> = () => {
-  const { data } = useGetCategoriesQuery();
+  useGetCategoriesQuery();
+  const { categories } = useSelector((state: RootState) => state.dataSlice);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { mutate: deleteCategory } = useDeleteCategory();
+  const { mutate: deleteCategory } = useDeleteCategory(categories);
 
-  const detailsBtnHandler = () => {
-    return "";
+  const detailsBtnHandler = (data: Category) => {
+    dispatch(openModal({ view: "CATEGORY_VIEW", payload: data }));
   };
   const editBtnHandler = (data: Category) => {
     navigate(`/editCategories/${data?._id}`, { state: data });
@@ -37,7 +42,7 @@ const CategoryList: React.FC<Props> = () => {
   return (
     <div className="">
       <Table tableHead={tableHead}>
-        {data?.map((category) => (
+        {categories?.map((category) => (
           <tr key={category._id}>
             <td>{category?.name}</td>
             {/* <td>{category?.image}</td> */}
@@ -49,7 +54,7 @@ const CategoryList: React.FC<Props> = () => {
                 isDetails={true}
                 isEdit={true}
                 isDelete={true}
-                detailsBtnHandler={detailsBtnHandler}
+                detailsBtnHandler={() => detailsBtnHandler(category)}
                 editBtnHandler={() => editBtnHandler(category)}
                 deleteBtnHandler={() => deleteBtnHandler(category?._id)}
               />
