@@ -6,6 +6,8 @@ interface UIContext {
   isAuthorized: boolean;
   adminInfo: AdminInfo;
   displaySidebar: boolean;
+  sideBarLable: string;
+  sideBarSubLable: string;
 }
 
 const initialState: UIContext = {
@@ -17,6 +19,8 @@ const initialState: UIContext = {
     roles: [""],
   },
   displaySidebar: false,
+  sideBarLable: "",
+  sideBarSubLable: "",
 };
 
 export const UISlice = createSlice({
@@ -41,9 +45,27 @@ export const UISlice = createSlice({
         adminInfo: action.payload,
       };
     },
+    setsideBarLable: (state, action: PayloadAction<string>) => {
+      return {
+        ...state,
+        sideBarLable: action.payload,
+      };
+    },
+    setsideBarSubLable: (state, action: PayloadAction<string>) => {
+      return {
+        ...state,
+        sideBarSubLable: action.payload,
+      };
+    },
   },
 });
 
-export const { authorize, setAdminInfo, unauthorize } = UISlice.actions;
+export const {
+  authorize,
+  setAdminInfo,
+  unauthorize,
+  setsideBarLable,
+  setsideBarSubLable,
+} = UISlice.actions;
 
 export default UISlice.reducer;

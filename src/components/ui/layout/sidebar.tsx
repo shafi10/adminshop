@@ -1,29 +1,36 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import "./css/sidebar.css";
 import { subSideNav } from "../../../settings/site_settings";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { HiTemplate } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../store";
+import { setsideBarSubLable, setsideBarLable } from "../../../feature/uiSlice";
 
 const Sidebar: React.FC = () => {
-  const [sideBarLable, setSideBarLable] = useState("");
-  const [sideBarSubLable, setSideBarSubLable] = useState("");
+  const { sideBarLable, sideBarSubLable } = useSelector(
+    (state: RootState) => state.uislice
+  );
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const sideBarClick = (item: any) => {
-    setSideBarSubLable("");
+    dispatch(setsideBarSubLable(""));
     if (item?.label === sideBarLable) {
-      return setSideBarLable("");
+      return dispatch(setsideBarLable(""));
     }
     if (item?.children) {
-      setSideBarLable(item?.label);
+      dispatch(setsideBarLable(item?.label));
     } else {
-      setSideBarLable(item?.label);
+      dispatch(setsideBarLable(item?.label));
       navigate(item.slug);
     }
   };
 
   const sideBarSubItemClick = (data: any) => {
-    setSideBarSubLable(data?.label);
+    dispatch(setsideBarSubLable(data?.label));
     navigate(data?.slug);
   };
   return (
