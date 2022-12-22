@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Field } from "formik";
 import styles from "./input.module.css";
 
 export interface Props {
@@ -10,8 +9,9 @@ export interface Props {
   type: string;
   placeholder: string;
   error: string | undefined;
-  touched: boolean | undefined;
   rest?: any;
+  onChange: any;
+  value: any;
 }
 
 const Input: React.FC<Props> = ({
@@ -23,22 +23,28 @@ const Input: React.FC<Props> = ({
   placeholder,
   rest,
   error,
-  touched,
+  onChange,
+  value,
 }) => {
   return (
     <div className={className ? className : styles?.inputBox}>
       {label && (
-        <label htmlFor={name} className={styles?.label}>
+        <label
+          htmlFor={name}
+          className={labelClassName ? labelClassName : styles?.label}
+        >
           {label}
         </label>
       )}
       <div className={styles?.inputArea}>
-        <Field
+        <input
           id={name}
+          onChange={onChange}
           name={name}
           type={type}
           placeholder={placeholder}
           className={styles?.input}
+          value={value}
           autoComplete="off"
           spellCheck="false"
           aria-invalid={error ? "true" : "false"}
