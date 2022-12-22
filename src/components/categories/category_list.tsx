@@ -1,6 +1,8 @@
 import * as React from "react";
 import Table from "../../components/ui/table";
 import { useGetCategoriesQuery } from "../../framework/categories/get-categories";
+import { dateFormat } from "../../utils/date-format";
+import ActionsButton from "../ui/actions";
 
 export interface Props {
   title?: string;
@@ -16,6 +18,16 @@ const tableHead = [
 
 const CategoryList: React.FC<Props> = () => {
   const { data } = useGetCategoriesQuery();
+
+  const detailsBtnHandler = () => {
+    return "";
+  };
+  const editBtnHandler = () => {
+    return "";
+  };
+  const deleteBtnHandler = () => {
+    return "";
+  };
   return (
     <div className="">
       <Table tableHead={tableHead}>
@@ -25,12 +37,16 @@ const CategoryList: React.FC<Props> = () => {
             {/* <td>{category?.image}</td> */}
             <td>{category?.is_active ? "Yes" : "No"}</td>
             <td>{category?.is_visible ? "Yes" : "No"}</td>
-            <td>{category?.createdAt}</td>
+            <td>{dateFormat(category?.createdAt)}</td>
             <td>
-              <div>
-                <span>View</span>
-                <span>Edit</span>
-              </div>
+              <ActionsButton
+                isDetails={true}
+                isEdit={true}
+                isDelete={true}
+                detailsBtnHandler={detailsBtnHandler}
+                editBtnHandler={editBtnHandler}
+                deleteBtnHandler={deleteBtnHandler}
+              />
             </td>
           </tr>
         ))}

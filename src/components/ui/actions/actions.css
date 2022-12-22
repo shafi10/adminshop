@@ -1,0 +1,28 @@
+.actions_buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.actions_btn {
+  background: transparent;
+  outline: none;
+  border: none;
+}
+
+.actions_details_btn {
+  font-size: var(--font-xl);
+  color: var(--primaryColor);
+}
+
+.actions_edit_btn {
+  font-size: var(--font-xl);
+  color: var(--blue);
+}
+
+.actions_delete_btn {
+  font-size: var(--font-xl);
+  color: var(--danger);
+}
