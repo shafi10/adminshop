@@ -8,6 +8,14 @@ export type InitialLoginValue = {
   password: string;
 };
 
+export type InitialCategoryValue = {
+  _id?: string;
+  name: string;
+  image: string;
+  is_active: boolean;
+  is_visible: boolean;
+};
+
 export type AdminInfo = {
   _id: string;
   name: string;

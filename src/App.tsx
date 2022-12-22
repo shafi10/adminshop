@@ -24,6 +24,10 @@ function App() {
           <Route path={ROUTES?.ADDPRODUCTS} element={<AddProducts />} />
           <Route path={ROUTES?.CATEGORIES} element={<Categories />} />
           <Route path={ROUTES?.ADDCATEGORIES} element={<AddCategories />} />
+          <Route
+            path={`${ROUTES?.EDITCATEGORIES}/:id`}
+            element={<AddCategories />}
+          />
           <Route path={ROUTES?.ORDERS} element={<Products />} />
           <Route path={ROUTES?.ADDORDERS} element={<AddProducts />} />
         </Route>

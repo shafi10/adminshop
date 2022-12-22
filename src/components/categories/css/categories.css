@@ -1,0 +1,17 @@
+.category_form_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category_form {
+  width: 600px;
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+
+.category_btn_layout {
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+}

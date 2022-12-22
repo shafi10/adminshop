@@ -1,8 +1,11 @@
 import * as React from "react";
-import Table from "../../components/ui/table";
+import Table from "../ui/table";
 import { useGetCategoriesQuery } from "../../framework/categories/get-categories";
 import { dateFormat } from "../../utils/date-format";
 import ActionsButton from "../ui/actions";
+import { useNavigate } from "react-router-dom";
+import { Category } from "../../utils/typs";
+import { useDeleteCategory } from "../../framework/categories/use-delete-category";
 
 export interface Props {
   title?: string;
@@ -18,15 +21,18 @@ const tableHead = [
 
 const CategoryList: React.FC<Props> = () => {
   const { data } = useGetCategoriesQuery();
+  const navigate = useNavigate();
+
+  const { mutate: deleteCategory } = useDeleteCategory();
 
   const detailsBtnHandler = () => {
     return "";
   };
-  const editBtnHandler = () => {
-    return "";
+  const editBtnHandler = (data: Category) => {
+    navigate(`/editCategories/${data?._id}`, { state: data });
   };
-  const deleteBtnHandler = () => {
-    return "";
+  const deleteBtnHandler = (id: string) => {
+    deleteCategory(id);
   };
   return (
     <div className="">
@@ -44,8 +50,8 @@ const CategoryList: React.FC<Props> = () => {
                 isEdit={true}
                 isDelete={true}
                 detailsBtnHandler={detailsBtnHandler}
-                editBtnHandler={editBtnHandler}
-                deleteBtnHandler={deleteBtnHandler}
+                editBtnHandler={() => editBtnHandler(category)}
+                deleteBtnHandler={() => deleteBtnHandler(category?._id)}
               />
             </td>
           </tr>

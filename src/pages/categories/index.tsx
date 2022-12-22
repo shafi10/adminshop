@@ -1,5 +1,5 @@
 import * as React from "react";
-import CategoryList from "../../components/categories/category_list";
+import CategoryList from "../../components/categories/categoryList";
 import SectionTitle from "../../components/ui/title";
 
 export interface Props {

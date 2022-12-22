@@ -7,3 +7,10 @@ export const loginSchema = Yup.object().shape({
     .max(20, "Too Long!")
     .required("Password is required"),
 });
+
+export const categorySchema = Yup.object().shape({
+  name: Yup.string().required("Name is required"),
+  image: Yup.string(),
+  is_visible: Yup.boolean(),
+  is_active: Yup.boolean(),
+});
