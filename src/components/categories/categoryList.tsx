@@ -9,6 +9,7 @@ import { useDeleteCategory } from "../../framework/categories/use-delete-categor
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { openModal } from "../../feature/modalSlice";
+import { ROUTES } from "../../utils/routes";
 
 export interface Props {
   title?: string;
@@ -34,7 +35,7 @@ const CategoryList: React.FC<Props> = () => {
     dispatch(openModal({ view: "CATEGORY_VIEW", payload: data }));
   };
   const editBtnHandler = (data: Category) => {
-    navigate(`/editCategories/${data?._id}`, { state: data });
+    navigate(`/${ROUTES.EDITCATEGORIES}/${data?._id}`, { state: data });
   };
   const deleteBtnHandler = (id: string) => {
     deleteCategory(id);

@@ -32,4 +32,26 @@ export type Category = {
   createdAt: string;
 };
 
+export type Products = {
+  _id: string;
+  categoryId: string;
+  discount_type: string;
+  generic_name: string;
+  is_available: boolean;
+  discount_value: number;
+  is_discountable: boolean;
+  manufacturer_name: string;
+  name: string;
+  strength: string;
+  price: number;
+  gallery: Gallery[];
+  isActive: boolean;
+  taq: string[];
+  createdAt: string;
+};
+
+export type Gallery = { original: string };
+
 export type TableHead = { label: string; width: string };
+
+export type SelectType = { value: any; label: string };

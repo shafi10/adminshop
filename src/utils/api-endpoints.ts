@@ -4,4 +4,5 @@ export const API_ENDPOINTS = {
   ADMININFO: "/admin/info",
   CATEGORIES: "/categories",
   CATEGORIESALL: "/categories/all",
+  PRODUCTS: "/products",
 };

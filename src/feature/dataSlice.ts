@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Category } from "../utils/typs";
+import { Category, Products } from "../utils/typs";
 
 interface UIContext {
   categories: Category[];
+  products: Products[];
 }
 
 const initialState: UIContext = {
   categories: [],
+  products: [],
 };
 
 export const DataSlice = createSlice({
@@ -19,9 +21,15 @@ export const DataSlice = createSlice({
         categories: action?.payload,
       };
     },
+    setProducts: (state, action: PayloadAction<Products[]>) => {
+      return {
+        ...state,
+        products: action?.payload,
+      };
+    },
   },
 });
 
-export const { setCategories } = DataSlice.actions;
+export const { setCategories, setProducts } = DataSlice.actions;
 
 export default DataSlice.reducer;

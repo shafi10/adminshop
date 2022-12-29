@@ -1,0 +1,39 @@
+.inputBox {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.inputArea {
+  margin-top: 8px;
+}
+
+.input {
+  color: var(--dark);
+  font-size: var(--font-xl);
+  background-color: var(--light);
+  padding: 10px 10px;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.input:focus {
+  border-color: var(--dark);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--dark);
+}
+
+.label {
+  font-size: var(--font-xl);
+}
+
+.error {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--danger);
+}
