@@ -12,6 +12,7 @@ export interface Props {
   rest?: any;
   onChange: any;
   value: any;
+  touched?: boolean | undefined;
 }
 
 const Input: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const Input: React.FC<Props> = ({
   error,
   onChange,
   value,
+  touched,
 }) => {
   return (
     <div className={className ? className : styles?.inputBox}>
@@ -50,7 +52,7 @@ const Input: React.FC<Props> = ({
           aria-invalid={error ? "true" : "false"}
           {...rest}
         />
-        {error && <p className={styles?.error}>{error}</p>}
+        {touched && error && <p className={styles?.error}>{error}</p>}
       </div>
     </div>
   );

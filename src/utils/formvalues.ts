@@ -1,4 +1,9 @@
-import { InitialLoginValue, InitialCategoryValue, Products } from "./typs";
+import {
+  InitialLoginValue,
+  InitialCategoryValue,
+  Products,
+  initialProductTypes,
+} from "./typs";
 
 export const initialLoginValue: InitialLoginValue = {
   email: "",
@@ -12,7 +17,7 @@ export const initialCategoryValue: InitialCategoryValue = {
   is_visible: false,
 };
 
-export const initialProductValue = {
+export const initialProductValue: initialProductTypes = {
   categoryId: "",
   discount_type: "",
   generic_name: "",

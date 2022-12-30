@@ -24,6 +24,7 @@ export const useLogoutMutation = () => {
     onSuccess: () => {
       Cookies.remove("auth_token");
       dispatch(unauthorize());
+      localStorage.removeItem("persist:root");
       setAdminInfo({
         _id: "",
         name: "",

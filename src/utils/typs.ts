@@ -55,3 +55,18 @@ export type Gallery = { original: string };
 export type TableHead = { label: string; width: string };
 
 export type SelectType = { value: any; label: string };
+
+export type initialProductTypes = {
+  categoryId: string | { value: string; label: string };
+  discount_type: string | { value: string; label: string };
+  generic_name: "";
+  is_available: false;
+  discount_value: "";
+  is_discountable: false;
+  manufacturer_name: "";
+  name: "";
+  strength: "";
+  price: "";
+  gallery: "";
+  taq: string | { value: string; label: string };
+};

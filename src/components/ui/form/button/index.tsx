@@ -30,7 +30,7 @@ const Button: React.FC<Props> = ({
       <button
         type={type}
         className={className ? className : styles?.button}
-        // onClick={onClick}
+        onClick={onClick}
         disabled={disabled}
       >
         {label}

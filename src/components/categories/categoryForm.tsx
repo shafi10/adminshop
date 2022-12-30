@@ -64,6 +64,7 @@ const CategoryForm: React.FC<Props> = () => {
             value={formik?.values?.name}
             error={formik?.errors?.name}
             onChange={formik.handleChange}
+            touched={formik?.touched?.name}
           />
           <Input
             label={"Icon Url"}
@@ -73,6 +74,7 @@ const CategoryForm: React.FC<Props> = () => {
             value={formik?.values?.image}
             error={formik?.errors?.image}
             onChange={formik.handleChange}
+            touched={formik?.touched?.image}
           />
           <Checkbox
             label={"Is Active"}

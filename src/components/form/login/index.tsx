@@ -30,6 +30,7 @@ const LoginForm: React.FC = () => {
               value={formik?.values?.email}
               error={formik?.errors?.email}
               onChange={formik.handleChange}
+              touched={formik?.touched?.email}
             />
             <Input
               label={"Enter Password"}
@@ -39,6 +40,7 @@ const LoginForm: React.FC = () => {
               value={formik?.values?.password}
               error={formik?.errors?.password}
               onChange={formik.handleChange}
+              touched={formik?.touched?.password}
             />
             <div className={Styles.buttonPosition}>
               <Button label={"Submit"} isLoading={isLoading} />

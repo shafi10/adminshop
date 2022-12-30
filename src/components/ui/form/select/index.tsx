@@ -13,6 +13,7 @@ export interface Props {
   handleChange: any;
   options: any[];
   isMulti?: boolean;
+  touched: boolean | undefined;
 }
 
 const CustomSelect: React.FC<Props> = ({
@@ -26,6 +27,7 @@ const CustomSelect: React.FC<Props> = ({
   options,
   placeholder,
   isMulti = false,
+  touched,
 }) => {
   return (
     <div className={className ? className : styles?.inputBox}>
@@ -45,7 +47,7 @@ const CustomSelect: React.FC<Props> = ({
           placeholder={placeholder}
           isMulti={isMulti}
         />
-        {error && <p className={styles?.error}>{error}</p>}
+        {touched && error && <p className={styles?.error}>{error}</p>}
       </div>
     </div>
   );

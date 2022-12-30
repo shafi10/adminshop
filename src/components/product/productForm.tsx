@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useFormik } from "formik";
-import { categorySchema } from "../../utils/validation";
+import { productSchema } from "../../utils/validation";
 import { initialProductValue } from "../../utils/formvalues";
 import Input from "../ui/form/input";
 import Button from "../ui/form/button";
@@ -28,10 +28,11 @@ const ProductForm: React.FC<Props> = () => {
   const { categories } = useSelector((state: RootState) => state.dataSlice);
   const { mutate: addProduct, isLoading, isSuccess } = useAddProduct();
   // const { mutate: editQuery } = useEditCategory();
-  const formik = useFormik({
+  const formik: any = useFormik({
     enableReinitialize: true,
+    validateOnBlur: false,
     initialValues: initialProductValue,
-    validationSchema: categorySchema,
+    validationSchema: productSchema,
     onSubmit: (values: any) => {
       if (id) {
         // editQuery(values);
@@ -84,29 +85,35 @@ const ProductForm: React.FC<Props> = () => {
             value={formik?.values?.name}
             error={formik?.errors?.name}
             onChange={formik.handleChange}
+            touched={formik?.touched?.name}
           />
           <CustomSelect
             label={"Enter Product Category"}
             name={"categoryId"}
             selectedOption={formik?.values?.categoryId}
-            error={formik?.errors?.categoryId}
+            error={
+              formik?.errors?.categoryId?.value &&
+              formik?.errors?.categoryId?.value
+            }
             handleChange={(selectedOption: SelectType) => {
               formik.setFieldValue("categoryId", selectedOption);
             }}
             options={selectCategories}
             placeholder={"Enter Product Category"}
+            touched={formik?.touched?.categoryId}
           />
           <CustomSelect
             label={"Enter Product Taq"}
             name={"taq"}
             selectedOption={formik?.values?.taq}
-            error={formik?.errors?.taq}
+            error={formik?.errors?.taq?.value || formik?.errors?.taq?.label}
             handleChange={(selectedOption: SelectType) => {
               formik.setFieldValue("taq", selectedOption);
             }}
             isMulti={true}
             options={selectCategories}
             placeholder={"Enter Product Taq"}
+            touched={formik?.touched?.taq}
           />
           <Input
             label={"Enter Manufacturer Name"}
@@ -116,6 +123,7 @@ const ProductForm: React.FC<Props> = () => {
             value={formik?.values?.manufacturer_name}
             error={formik?.errors?.manufacturer_name}
             onChange={formik.handleChange}
+            touched={formik?.touched?.manufacturer_name}
           />
           <Input
             label={"Enter Generic Name"}
@@ -125,6 +133,7 @@ const ProductForm: React.FC<Props> = () => {
             value={formik?.values?.generic_name}
             error={formik?.errors?.generic_name}
             onChange={formik.handleChange}
+            touched={formik?.touched?.generic_name}
           />
           <Input
             label={"Enter Product Image Url"}
@@ -134,6 +143,7 @@ const ProductForm: React.FC<Props> = () => {
             value={formik?.values?.gallery}
             error={formik?.errors?.gallery}
             onChange={formik.handleChange}
+            touched={formik?.touched?.gallery}
           />
           <Input
             label={"Enter Price"}
@@ -143,6 +153,7 @@ const ProductForm: React.FC<Props> = () => {
             value={formik?.values?.price}
             error={formik?.errors?.price}
             onChange={formik.handleChange}
+            touched={formik?.touched?.price}
           />
           <Checkbox
             label={"Is Available"}
@@ -158,29 +169,38 @@ const ProductForm: React.FC<Props> = () => {
             error={formik?.errors?.is_discountable}
             onChange={formik.handleChange}
           />
-          <CustomSelect
-            label={"Enter Discount Type"}
-            name={"discount_type"}
-            selectedOption={formik?.values?.discount_type}
-            error={formik?.errors?.discount_type}
-            handleChange={(selectedOption: SelectType) => {
-              formik.setFieldValue("discount_type", selectedOption);
-            }}
-            options={[
-              { value: "Percentage", label: "Percentage" },
-              { value: "Amount", label: "Amount" },
-            ]}
-            placeholder={"Enter Discount Type"}
-          />
-          <Input
-            label={"Enter Discount Value"}
-            name={"discount_value"}
-            type={"number"}
-            placeholder={"Enter Discount Value"}
-            value={formik?.values?.discount_value}
-            error={formik?.errors?.discount_value}
-            onChange={formik.handleChange}
-          />
+          {formik?.values?.is_discountable && (
+            <>
+              <CustomSelect
+                label={"Enter Discount Type"}
+                name={"discount_type"}
+                selectedOption={formik?.values?.discount_type}
+                error={
+                  formik?.errors?.discount_type?.label ||
+                  formik?.errors?.discount_type?.value
+                }
+                handleChange={(selectedOption: SelectType) => {
+                  formik.setFieldValue("discount_type", selectedOption);
+                }}
+                options={[
+                  { value: "Percentage", label: "Percentage" },
+                  { value: "Amount", label: "Amount" },
+                ]}
+                placeholder={"Enter Discount Type"}
+                touched={formik?.touched?.discount_type}
+              />
+              <Input
+                label={"Enter Discount Value"}
+                name={"discount_value"}
+                type={"number"}
+                placeholder={"Enter Discount Value"}
+                value={formik?.values?.discount_value}
+                error={formik?.errors?.discount_value}
+                onChange={formik.handleChange}
+                touched={formik?.touched?.discount_value}
+              />
+            </>
+          )}
           <div className={"category_btn_layout"}>
             <Button label={"Submit"} type="submit" isLoading={isLoading} />
           </div>
